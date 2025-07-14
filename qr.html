@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JAILBREAK QR SCANNER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', monospace;
+      background: black;
+      color: #00ffff;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    canvas#matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 420px;
+      margin: 8vh auto;
+      padding: 2rem;
+      text-align: center;
+      color: #00ffff;
+    }
+
+    .wrapper h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #ff2f2f;
+      text-shadow: 0 0 10px #ff2f2f;
+    }
+
+    .wrapper h2 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+    }
+
+    .qr-container {
+      background: radial-gradient(ellipse at center, rgba(0,255,255,0.2) 0%, rgba(0,0,0,0.9) 70%);
+      padding: 1.5rem;
+      border: 2px solid #00ffff;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00ffff, inset 0 0 10px #ff2f2f;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .qr-container::before {
+      content: '';
+      position: absolute;
+      top: -15px; bottom: -15px; left: -15px; right: -15px;
+      border: 2px dashed #ff2f2f;
+      border-radius: 30px;
+      opacity: 0.4;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .qr-container img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #00ffff;
+    }
+
+    progress {
+      width: 100%;
+      height: 12px;
+      appearance: none;
+    }
+
+    progress::-webkit-progress-bar {
+      background: #222;
+      border-radius: 8px;
+    }
+
+    progress::-webkit-progress-value {
+      background: linear-gradient(to right, #00ffff, #ff2f2f);
+      border-radius: 8px;
+    }
+
+    .reload-button {
+      display: inline-block;
+      margin-top: 1.2rem;
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid #ff2f2f;
+      color: #ff2f2f;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .reload-button:hover {
+      background-color: #ff2f2f;
+      color: #000;
+    }
+
+    .legend {
+      font-size: 1rem;
+      color: #b1ffff;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="wrapper">
+  <h1>JAILBREAK QR SCANNER</h1>
+  <h2>Connect securely to your session</h2>
+
+  <div class="qr-container">
+    <img id="qr-image" src="/server" alt="QR CODE"/>
+  </div>
+
+  <p class="legend" id="legend">Scan the QR code using your app</p>
+  <progress id="progressBar" value="0" max="30"></progress>
+  <a href="javascript:location.reload()" class="reload-button">Reload Page</a>
+</div>
+
+<script>
+  // Countdown
+  let timeleft = 30;
+  const timer = setInterval(() => {
+    const bar = document.getElementById("progressBar");
+    const main = document.querySelector("h1");
+    const legend = document.getElementById("legend");
+
+    if (timeleft <= 0) {
+      clearInterval(timer);
+      bar.remove();
+      main.innerHTML = "QR EXPIRED";
+      legend.innerHTML = "";
+    } else {
+      bar.value = 30 - timeleft;
+      timeleft--;
+    }
+  }, 1000);
+
+  // Matrix effect - Red and Cyan with "JAILBREAK"
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const letters = "JAILBREAK".split("");
+  const fontSize = 18;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = letters[Math.floor(Math.random() * letters.length)];
+      ctx.font = `${fontSize}px monospace`;
+      ctx.fillStyle = Math.random() > 0.5 ? "#00ffff" : "#ff2f2f";
+      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawMatrix, 40);
+</script>
+
+</body>
+</html>
