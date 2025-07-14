@@ -1,0 +1,2 @@
+# JAILBREAK-SESSION-ID
+Pair code for all JAILBREAK BOTS
