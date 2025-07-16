@@ -93,15 +93,15 @@ renderLargerThumbnail: true
                             let ddd = sock.sendMessage(sock.user.id, { text: e });
                             let desc = `*>JAILBREAK* 
 🪪your session id is above 
-🫆thank you for choosing us
+🫡thank you for choosing us
 🤖upload ur id and let's start
 🔒 don't share ID with anyone`;
                             await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: "ᴍᴀʟᴠɪɴ-xᴅ 𝕮𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉 ✅  ",
-thumbnailUrl: "https://files.catbox.moe/bqs70b.jpg",
+title: "JAILBREAK ✅  ",
+thumbnailUrl: "https://files.catbox.moe/ottgpg.jpg",
 mediaType: 2,
 renderLargerThumbnail: true,
 showAdAttribution: true
