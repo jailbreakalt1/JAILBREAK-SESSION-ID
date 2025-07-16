@@ -87,7 +87,7 @@ text: desc,
 contextInfo: {
 externalAdReply: {
 title: "Jailbreak",
-thumbnailUrl: "https://files.catbox.moe/bqs70b.jpg",
+thumbnailUrl: "https://files.catbox.moe/ottgpg.jpg",
 mediaType: 1,
 renderLargerThumbnail: true
 }  
@@ -96,7 +96,7 @@ renderLargerThumbnail: true
 {quoted:code })
                     } catch (e) {
                             let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = `*>JAILBREAK* 
+                            let desc = `*n/>JAILBREAK* 
 🪪your session id is above 
 🫆thank you for choosing us
 🤖upload ur id and let's start
@@ -106,7 +106,7 @@ text: desc,
 contextInfo: {
 externalAdReply: {
 title: "Jailbreak",
-thumbnailUrl: "https://i.imgur.com/GVW7aoD.jpeg",
+thumbnailUrl: "https://files.catbox.moe/ottgpg.jpg",
 renderLargerThumbnail: true,
 showAdAttribution: true
 }  
