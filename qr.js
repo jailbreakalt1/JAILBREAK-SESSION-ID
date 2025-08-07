@@ -72,17 +72,18 @@ var randomItem = selectRandomItem(items);
                         const string_session = mega_url.replace('https://mega.nz/file/', '');
                         let md = "JB~" + string_session;
                         let code = await sock.sendMessage(sock.user.id, { text: md });
-                        let desc = `*>JAILBREAK* 
-🪪your session id is above 
-🫆thank you for choosing us
-🤖upload ur id and let's start
-🔒 don't share ID with anyone`;
+                        let desc = `*> JAILBREAK* 
+> 🪪your session id is above 
+> 🫆thank you for choosing us
+> 🤖upload ur id and let's start
+> 🔒 don't share ID with anyone`;
                         await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
 title: "JAILBREAK 𝕮𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉",
-thumbnailUrl: "https://files.catbox.moe/bqs70b.jpg",
+thumbnailUrl: "https://files.catbox.moe/ottgpg.jpg
+",
 mediaType: 1,
 renderLargerThumbnail: true
 }  
@@ -91,11 +92,11 @@ renderLargerThumbnail: true
 {quoted:code })
                     } catch (e) {
                             let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = `*>JAILBREAK* 
-🪪your session id is above 
-🫡thank you for choosing us
-🤖upload ur id and let's start
-🔒 don't share ID with anyone`;
+                            let desc = `*> JAILBREAK* 
+> 🪪your session id is above 
+> 🫡thank you for choosing us
+> 🤖upload ur id and let's start
+> 🔒 don't share ID with anyone`;
                             await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
